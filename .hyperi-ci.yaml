@@ -32,14 +32,19 @@ build:
 
 publish:
   enabled: true
+  # `target` drives all artefact routing. `oss` -> GHCR + public
+  # registries; `internal` -> JFrog Docker / JFrog repos. The container
+  # job no longer takes a `registry:` field — it's derived from target.
+  target: oss
   binaries: both
   container:
+    # Strict mode: fail loudly if the Dockerfile / contract source
+    # disappears. This is the canary for the new container pipeline,
+    # so we want loud failure if signal detection regresses.
     enabled: true
-    registry: jfrog
     dockerfile: Dockerfile
     platforms:
       - linux/amd64
       - linux/arm64
   helm:
     enabled: true
-    registry: jfrog

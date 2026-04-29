@@ -3,6 +3,9 @@
 //
 // Binary with C/C++ deps (librdkafka) for CI pipeline testing.
 // Validates that native dependency compilation and cross-compilation work.
+//
+// Canary commit: exercise hyperi-ci v1.13.0 container pipeline (custom
+// mode -> GHCR via publish.target=oss, multi-arch buildx).
 
 use rdkafka::util::get_rdkafka_version;
 
