@@ -12,16 +12,23 @@ description = "Rust app variant — exercises hyperi-ci container custom mode (G
 
 # Two deps deliberately chosen to mirror real DFE projects:
 #
-#   rdkafka (wraps librdkafka via the C/C++ build path) — validates that
-#   hyperi-ci handles native dependency compilation, aarch64 cross-
-#   compilation, and the Dockerfile build context. Mirrors dfe-loader.
+#   rdkafka (dynamic-linking) — links against librdkafka-dev installed
+#   from apt. Mirrors what dfe-loader actually does in production.
+#   The cmake-build feature would compile librdkafka from C source on
+#   every CI step (~3 min each, 4 steps per run); dynamic-linking
+#   skips that entirely and validates the apt → link path that the
+#   real DFE container build uses.
 #
 #   hyperi-rustlib — validates that the standard logger/cli surface
 #   resolves at install time and that `DfeApp` is reachable when a
 #   project later opts into contract-mode container builds. Real DFE
 #   apps depend on it directly.
+#
+# Only this rust app carries the kafka native-dep surface — sibling
+# repos (ci-test-rust-lib, ci-test-rust-workspace) stay rustlib-only
+# to keep their CI fast and focused on their own test axis.
 [dependencies]
-rdkafka = { version = "0.39.0", features = ["cmake-build"] }
+rdkafka = { version = "0.39.0", features = ["dynamic-linking"] }
 hyperi-rustlib = { version = ">=2.5.4", default-features = false, features = ["logger", "cli"] }
 
 [profile.release]
