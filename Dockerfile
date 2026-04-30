@@ -9,7 +9,8 @@ FROM rust:1.82-slim AS builder
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       build-essential cmake pkg-config libssl-dev \
+       build-essential cmake pkg-config libssl-dev libcurl4-openssl-dev \
+       libsasl2-dev libzstd-dev liblz4-dev libsnappy-dev zlib1g-dev \
        gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
     && rm -rf /var/lib/apt/lists/*
 
