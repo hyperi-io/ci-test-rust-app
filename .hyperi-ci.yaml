@@ -1,12 +1,15 @@
-# HyperI CI Configuration — ci-test-rust-minimal
+# Project:   ci-test-rust-app
+# License:   FSL-1.1-ALv2
+# Copyright: (c) 2026 HYPERI PTY LIMITED
 #
-# Mirrors dfe-loader complexity (jfrog publish, container, helm, aarch64 cross)
-# but with zero cargo dependencies so builds complete in <5 minutes.
-# Use this project to iterate on CI scripts without 30-minute feedback loops.
+# Rust application variant in the hyperi-ci test matrix. Mirrors real
+# DFE projects (native deps via librdkafka, aarch64 cross-compile,
+# hyperi-rustlib dep) without any cargo registry dependencies that
+# would make the build slow. Total CI <5min by design.
 
 language: rust
 
-# Use standard GitHub runners (not ARC) — no runner infra dependency
+# GitHub-hosted runners — no ARC dependency for this test repo.
 runners:
   default: ubuntu-latest
 
@@ -18,7 +21,7 @@ quality:
 
 test:
   enabled: true
-  coverage: false    # No coverage tooling needed for minimal binary
+  coverage: false
 
 build:
   enabled: true
@@ -33,14 +36,12 @@ build:
 publish:
   enabled: true
   # `target` drives all artefact routing. `oss` -> GHCR + public
-  # registries; `internal` -> JFrog Docker / JFrog repos. The container
-  # job no longer takes a `registry:` field — it's derived from target.
+  # registries; `internal` -> JFrog. The container job derives its
+  # registry from target; no `registry:` field needed.
   target: oss
   binaries: both
   container:
-    # Strict mode: fail loudly if the Dockerfile / contract source
-    # disappears. This is the canary for the new container pipeline,
-    # so we want loud failure if signal detection regresses.
+    # Strict mode: fail loudly if the Dockerfile disappears.
     enabled: true
     dockerfile: Dockerfile
     platforms:

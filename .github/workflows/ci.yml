@@ -1,8 +1,7 @@
-# Project:   ci-test-rust-minimal
+# Project:   ci-test-rust-app
 # File:      .github/workflows/ci.yml
-# Purpose:   CI pipeline
-#
-# License:   Proprietary — HYPERI PTY LIMITED
+# Purpose:   CI pipeline (Rust app + GHCR container canary)
+# License:   FSL-1.1-ALv2
 # Copyright: (c) 2026 HYPERI PTY LIMITED
 
 name: CI
@@ -10,11 +9,32 @@ name: CI
 on:
   push:
     branches: ["**"]
+    paths-ignore:
+      - ".claude/**"
+      - ".cursor/**"
+      - ".gemini/**"
+      - "hyperi-ai/**"
+      - "docs/**"
+      - "**.md"
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: true
+        description: "Tag to publish (e.g. v1.0.0)"
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  packages: write
 
 jobs:
   ci:
     uses: hyperi-io/hyperi-ci/.github/workflows/rust-ci.yml@main
+    with:
+      publish-target: oss
+      tag: ${{ inputs.tag || '' }}
     secrets: inherit

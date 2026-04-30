@@ -1,16 +1,28 @@
+# Project:   ci-test-rust-app
+# License:   FSL-1.1-ALv2
+# Copyright: (c) 2026 HYPERI PTY LIMITED
+
 [package]
-name = "ci-test"
-version = "0.1.0"
+name = "ci-test-rust-app"
+version = "1.0.0"
 edition = "2021"
 rust-version = "1.82"
 license = "FSL-1.1-ALv2"
-description = "Rust binary with C/C++ deps for CI pipeline testing"
+description = "Rust app variant — exercises hyperi-ci container custom mode (GHCR) + native deps"
 
-# Uses rdkafka (wraps librdkafka C/C++ library from github.com/confluentinc/librdkafka)
-# to validate CI handles native C/C++ dependency compilation and cross-compilation.
-# Mirrors real projects like dfe-loader that depend on librdkafka.
+# Two deps deliberately chosen to mirror real DFE projects:
+#
+#   rdkafka (wraps librdkafka via the C/C++ build path) — validates that
+#   hyperi-ci handles native dependency compilation, aarch64 cross-
+#   compilation, and the Dockerfile build context. Mirrors dfe-loader.
+#
+#   hyperi-rustlib — validates that the standard logger/cli surface
+#   resolves at install time and that `DfeApp` is reachable when a
+#   project later opts into contract-mode container builds. Real DFE
+#   apps depend on it directly.
 [dependencies]
 rdkafka = { version = "0.39.0", features = ["cmake-build"] }
+hyperi-rustlib = { version = ">=2.5.4", default-features = false, features = ["logger", "cli"] }
 
 [profile.release]
 lto = "thin"

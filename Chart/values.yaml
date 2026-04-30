@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ci-test
+  repository: ghcr.io/hyperi-io/ci-test-rust-app
   pullPolicy: IfNotPresent
   tag: ""
 
