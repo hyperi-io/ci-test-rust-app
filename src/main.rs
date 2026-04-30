@@ -4,12 +4,14 @@
 //! ci-test-rust-app — Rust application variant for the hyperi-ci test
 //! matrix. Exercises three things in one CI run:
 //!
-//! 1. Native C/C++ dep compilation + aarch64 cross-compile (rdkafka /
-//!    librdkafka via cmake-build).
+//! 1. Dynamic-linking against system librdkafka1 + aarch64 cross-compile
+//!    (rdkafka crate via the `dynamic-linking` feature). No cmake build
+//!    in CI — apt-installed librdkafka1 is the link target.
 //! 2. The hyperi-rustlib install path — proves the standard logger /
 //!    cli features resolve, link, and load at runtime.
-//! 3. The hyperi-ci container custom-mode build — Dockerfile detected,
-//!    multi-arch buildx, GHCR push.
+//! 3. The hyperi-ci container pipeline — runtime-only Dockerfile that
+//!    COPYs pre-built binaries from `dist/`, multi-arch buildx, GHCR
+//!    push gated by `publish.target=oss`.
 
 use rdkafka::util::get_rdkafka_version;
 
