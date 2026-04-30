@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.0...v1.0.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* refresh module doc to reflect dynamic-linking and runtime Dockerfile ([7d80f0d](https://github.com/hyperi-io/ci-test-rust-app/commit/7d80f0daad582d9c1772a9d20875ded5166cd2e9))
+
 # 1.0.0 (2026-04-30)
 
 
