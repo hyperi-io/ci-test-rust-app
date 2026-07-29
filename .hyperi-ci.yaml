@@ -34,7 +34,19 @@ build:
       - aarch64-unknown-linux-gnu
 
 publish:
-  enabled: true
+  # OFF. This is a TEST FIXTURE and `target: oss` means the real public
+  # registries -- crates.io for a Rust repo. ci-test-rust-lib proved that is
+  # not theoretical: it published 1.0.0 to crates.io on 2026-07-29 during a
+  # routine fixture run, and crates.io has no delete. A yank stops new
+  # dependency resolution finding it; the name and version stay forever.
+  #
+  # A fixture is a low-scrutiny repo by design, so an automatic path from it to
+  # a public registry is the wrong shape regardless of what it happens to
+  # contain today.
+  #
+  # The stages worth testing -- version resolution, tagging, artefact build --
+  # all run before the upload and are still exercised. Only the upload is off.
+  enabled: false
   # `target` drives all artefact routing. `oss` -> GHCR + public
   # registries; `internal` -> JFrog. The container job derives its
   # registry from target; no `registry:` field needed.
