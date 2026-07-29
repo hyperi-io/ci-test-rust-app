@@ -39,6 +39,23 @@ publish:
   # registries; `internal` -> JFrog. The container job derives its
   # registry from target; no `registry:` field needed.
   target: oss
+  # NO PUBLIC REGISTRY UPLOAD. Every ci-test fixture carries this.
+  #
+  # A falsy destination is hyperi-ci's per-artefact opt-out, so everything up
+  # to the upload still runs and is still under test: version resolution, the
+  # tag, the artefact build, the GH Release, the GHCR container. Only the leg
+  # out to crates.io is cut. Cutting the whole stage instead would stop
+  # exercising the part that actually breaks.
+  #
+  # Not hypothetical -- ci-test-rust-lib published 1.0.0 to crates.io on
+  # 2026-07-29 from a routine fixture run. A fixture is a low-scrutiny repo by
+  # design, so an automatic path from one to a public registry is the wrong
+  # shape whatever it happens to contain today.
+  #
+  # `publish.enabled: false` does NOT do this. hyperi-ci never reads that key
+  # (hyperi-io/hyperi-ci#79) -- cut the destination, not the stage.
+  destinations_oss:
+    cargo: false
   binaries: both
   container:
     # Strict mode: fail loudly if the Dockerfile disappears.
