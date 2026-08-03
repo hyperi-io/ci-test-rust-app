@@ -8,7 +8,7 @@ version = "1.0.0"
 edition = "2021"
 rust-version = "1.82"
 license = "FSL-1.1-ALv2"
-description = "Rust app variant — exercises hyperi-ci container custom mode (GHCR) + native deps"
+description = "hyperi-ci E2E fixture: Rust app, container custom mode and native deps"
 
 # Two deps deliberately chosen to mirror real DFE projects:
 #
