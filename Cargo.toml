@@ -6,7 +6,9 @@
 name = "ci-test-rust-app"
 version = "1.0.0"
 edition = "2021"
-rust-version = "1.82"
+# Floor set by scalo, which is edition 2024 and declares rustc 1.95.
+# The edition stays 2021 -- that is this fixture's own test axis.
+rust-version = "1.95"
 license = "FSL-1.1-ALv2"
 description = "hyperi-ci E2E fixture: Rust app, container custom mode and native deps"
 
@@ -19,17 +21,19 @@ description = "hyperi-ci E2E fixture: Rust app, container custom mode and native
 #   skips that entirely and validates the apt → link path that the
 #   real DFE container build uses.
 #
-#   hyperi-rustlib — validates that the standard logger/cli surface
-#   resolves at install time and that `DfeApp` is reachable when a
-#   project later opts into contract-mode container builds. Real DFE
-#   apps depend on it directly.
+#   scalo -- validates that the standard logger/cli surface resolves at
+#   install time. Real DFE apps depend on it directly. `cli` is the bare
+#   clap tier (CommonArgs, StandardCommand, VersionInfo, CliError);
+#   ServiceApp needs `cli-service`, which pulls metrics + memory +
+#   scaling + worker-pool and blows the sub-5-minute CI budget.
+#   Supersedes hyperi-rustlib (repo archived 2026-08-03).
 #
-# Only this rust app carries the kafka native-dep surface — sibling
-# repos (ci-test-rust-lib, ci-test-rust-workspace) stay rustlib-only
+# Only this rust app carries the kafka native-dep surface -- sibling
+# repos (ci-test-rust-lib, ci-test-rust-workspace) stay scalo-only
 # to keep their CI fast and focused on their own test axis.
 [dependencies]
 rdkafka = { version = "0.39.0", features = ["dynamic-linking"] }
-hyperi-rustlib = { version = ">=2.5.4", default-features = false, features = ["logger", "cli"] }
+scalo = { version = ">=2.10.7, <3", default-features = false, features = ["logger", "cli"] }
 
 [profile.release]
 lto = "thin"

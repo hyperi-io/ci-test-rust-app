@@ -7,8 +7,8 @@
 //! 1. Dynamic-linking against system librdkafka1 + aarch64 cross-compile
 //!    (rdkafka crate via the `dynamic-linking` feature). No cmake build
 //!    in CI — apt-installed librdkafka1 is the link target.
-//! 2. The hyperi-rustlib install path — proves the standard logger /
-//!    cli features resolve, link, and load at runtime.
+//! 2. The scalo install path -- proves the standard logger / cli
+//!    features resolve, link, and load at runtime.
 //! 3. The hyperi-ci container pipeline — runtime-only Dockerfile that
 //!    COPYs pre-built binaries from `dist/`, multi-arch buildx, GHCR
 //!    push gated by `publish.target=oss`.
@@ -16,10 +16,10 @@
 use rdkafka::util::get_rdkafka_version;
 
 fn main() {
-    // Initialise rustlib's logger so the binary doesn't link the
-    // logger feature without exercising it. Even a single emit catches
-    // ABI / linkage regressions early.
-    let _ = hyperi_rustlib::logger::setup_default();
+    // Initialise scalo's logger so the binary doesn't link the logger
+    // feature without exercising it. Even a single emit catches ABI /
+    // linkage regressions early.
+    let _ = scalo::logger::setup_default();
 
     let (version_int, version_str) = get_rdkafka_version();
     println!(
@@ -45,10 +45,10 @@ mod tests {
     }
 
     #[test]
-    fn rustlib_logger_setup_is_callable() {
-        // Don't unwrap — the logger may already be initialised by a
+    fn scalo_logger_setup_is_callable() {
+        // Don't unwrap -- the logger may already be initialised by a
         // sibling test in the same process. We're just checking that
         // the symbol is reachable + the feature is wired correctly.
-        let _ = hyperi_rustlib::logger::setup_default();
+        let _ = scalo::logger::setup_default();
     }
 }
