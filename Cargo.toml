@@ -33,7 +33,7 @@ description = "hyperi-ci E2E fixture: Rust app, container custom mode and native
 # to keep their CI fast and focused on their own test axis.
 [dependencies]
 rdkafka = { version = "0.39.0", features = ["dynamic-linking"] }
-scalo = { version = ">=2.10.7, <3", default-features = false, features = ["logger", "cli"] }
+scalo = { version = ">=2.12.3, <3", default-features = false, features = ["logger", "cli"] }
 
 [profile.release]
 lto = "thin"
