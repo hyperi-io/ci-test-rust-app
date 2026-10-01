@@ -11,7 +11,8 @@
 //!    features resolve, link, and load at runtime.
 //! 3. The hyperi-ci container pipeline — runtime-only Dockerfile that
 //!    COPYs pre-built binaries from `dist/`, multi-arch buildx, GHCR
-//!    push gated by `publish.target=oss`.
+//!    push (every artefact's destination is OSS; there is no longer a
+//!    `target` switch).
 
 use rdkafka::util::get_rdkafka_version;
 
