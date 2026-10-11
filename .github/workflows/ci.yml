@@ -50,4 +50,7 @@ jobs:
       tag: ${{ inputs.tag || '' }}
       from-head: ${{ inputs.from-head || '' }}
       bump: ${{ inputs.bump || 'auto' }}
+      runner-quality: ubuntu-26.04
+      runner-test: ubuntu-26.04
+      runner-build: ubuntu-26.04
     secrets: inherit
