@@ -16,7 +16,7 @@
 # buildx multi-arch sets TARGETARCH per platform run; we COPY the
 # matching binary in. No Rust toolchain needed in the image.
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 # Runtime shared libraries for dynamically-linked dependencies.
 # librdkafka1 (runtime SO) for the rdkafka crate; libssl3 + zlib1g
