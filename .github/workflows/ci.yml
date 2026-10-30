@@ -44,7 +44,7 @@ permissions:
 
 jobs:
   ci:
-    uses: hyperi-io/hyperi-ci/.github/workflows/rust-ci.yml@main
+    uses: hyperi-io/hyperi-ci/.github/workflows/rust-ci.yml@fix/runner-fit
     with:
       publish-target: oss
       tag: ${{ inputs.tag || '' }}
