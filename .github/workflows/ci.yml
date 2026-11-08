@@ -50,4 +50,9 @@ jobs:
       tag: ${{ inputs.tag || '' }}
       from-head: ${{ inputs.from-head || '' }}
       bump: ${{ inputs.bump || 'auto' }}
+      runner-mode: free
+      optimize-tier: release
+      branch-build: "true"
+      build-timeout-minutes: 360
+      test-timeout-minutes: 360
     secrets: inherit
