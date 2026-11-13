@@ -1,3 +1,14 @@
+# Changelog
+
+Rendered by CI and committed back at the end of a release -- do not edit by
+hand. Release notes also appear on the GitHub Releases page, one per tag.
+
+## [1.0.3](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.2...v1.0.3) (2026-11-13)
+
+### Bug Fixes
+
+* **fixture:** drop the five-minute CI claim ([4d1e0f6](https://github.com/hyperi-io/ci-test-rust-app/commit/4d1e0f6b8670f9a4bcb82ec8f7c5cf6f46e3b94e))
+
 ## [1.0.2](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.1...v1.0.2) (2026-11-13)
 
 ### What's Changed
