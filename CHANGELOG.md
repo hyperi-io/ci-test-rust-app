@@ -1,3 +1,17 @@
+## [1.0.2](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.1...v1.0.2) (2026-11-13)
+
+### What's Changed
+* fix: modernise dispatch to from-head shape by @catinspace-au in https://github.com/hyperi-io/ci-test-rust-app/pull/3
+* fix: enable branch-mode dev-push by @catinspace-au in https://github.com/hyperi-io/ci-test-rust-app/pull/4
+* fix(release): add the VERSION file the tag step requires by @catinspace-au in https://github.com/hyperi-io/ci-test-rust-app/pull/5
+* fix(deps): swap the archived hyperi-rustlib for scalo by @catinspace-au in https://github.com/hyperi-io/ci-test-rust-app/pull/8
+* fix(deps): update Rust crate scalo to >=2.12.3, <3 by @renovate[bot] in https://github.com/hyperi-io/ci-test-rust-app/pull/9
+* fix: rename legacy publish: config key to release:, refresh comment by @catinspace-au in https://github.com/hyperi-io/ci-test-rust-app/pull/66
+
+### New Contributors
+* @catinspace-au made their first contribution in https://github.com/hyperi-io/ci-test-rust-app/pull/3
+* @renovate[bot] made their first contribution in https://github.com/hyperi-io/ci-test-rust-app/pull/9
+
 ## [1.0.1](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.0...v1.0.1) (2026-04-30)
 
 
