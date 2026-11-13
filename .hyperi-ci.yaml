@@ -5,7 +5,7 @@
 # Rust application variant in the hyperi-ci test matrix. Mirrors real
 # DFE projects (native deps via librdkafka, aarch64 cross-compile, scalo
 # dep) without any cargo registry dependencies that would make the build
-# slow. Total CI <5min by design.
+# slow.
 
 language: rust
 
