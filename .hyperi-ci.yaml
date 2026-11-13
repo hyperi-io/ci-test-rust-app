@@ -9,10 +9,6 @@
 
 language: rust
 
-# GitHub-hosted runners — no ARC dependency for this test repo.
-runners:
-  default: ubuntu-latest
-
 quality:
   enabled: true
   rust:
@@ -25,7 +21,6 @@ test:
 
 build:
   enabled: true
-  type: app
   strategies:
     - native
   rust:
@@ -54,7 +49,6 @@ release:
   # part under test -- cut the destination, not the stage.
   destinations:
     cargo: false
-  binaries: both
   container:
     # Strict mode: fail loudly if the Dockerfile disappears.
     enabled: true
@@ -71,3 +65,5 @@ release:
     dev_push: true
   helm:
     enabled: true
+    charts:
+      - Chart
