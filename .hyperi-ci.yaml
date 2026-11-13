@@ -35,6 +35,8 @@ build:
 
 release:
   enabled: true
+  # A release from main cuts vX.Y.Z-rc.N. GA comes from `hyperi-ci promote` or a hotfix.
+  candidates: true
   # NO PUBLIC REGISTRY UPLOAD. Every ci-test fixture carries this.
   #
   # A falsy destination is hyperi-ci's per-artefact opt-out, so everything up
