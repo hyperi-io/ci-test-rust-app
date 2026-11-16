@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [1.0.4](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.3...v1.0.4) (2026-11-16)
+
+### Bug Fixes
+
+* **ci:** add a runner-mode dispatch input ([71bce39](https://github.com/hyperi-io/ci-test-rust-app/commit/71bce39403271cab7a4c9633d347996cca384b78))
+* **fixture:** restore GA releases from main ([fcc5bfd](https://github.com/hyperi-io/ci-test-rust-app/commit/fcc5bfda6a2d5fdb0a097cd613405fe50ad49db7))
+
 ## [1.0.3](https://github.com/hyperi-io/ci-test-rust-app/compare/v1.0.2...v1.0.3) (2026-11-13)
 
 ### Bug Fixes
